@@ -1,4 +1,4 @@
-const CACHE = "gst-billing-v43";
+const CACHE = "gst-billing-v44";
 const ASSETS = [
   "./index.html","./manifest.json","./icon-192.png","./icon-512.png","./apple-touch-icon.png",
 ];
