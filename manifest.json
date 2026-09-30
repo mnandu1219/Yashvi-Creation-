@@ -1,7 +1,7 @@
 {
-  "name": "GST Billing — Invoicing & Accounts",
-  "short_name": "GST Billing",
-  "description": "GST invoicing, inventory, parties, expenses and reports for your business.",
+  "name": "Yashvi Creation",
+  "short_name": "Yashvi Creation",
+  "description": "Billing, stock, parties, payments and reports for Yashvi Creation.",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
