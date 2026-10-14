@@ -1,4 +1,4 @@
-const CACHE = "gst-billing-v65";
+const CACHE = "gst-billing-v67";
 const ASSETS = [
   "./index.html","./manifest.json","./icon-yc-192.png","./icon-yc-512.png","./apple-touch-icon-yc.png",
 ];
@@ -21,7 +21,11 @@ self.addEventListener("fetch", (e) => {
   // cached copy when offline.
   // A server error page (e.g. 503) is never shown instead of the saved copy, and on a weak signal the
   // saved copy opens after 3 seconds (the new one is still saved for the next open).
-  if (e.request.mode === "navigate" || url.pathname.endsWith("/index.html") || url.pathname.endsWith("/")) {
+  // The app page is the folder itself or index.html. Any other page opened here (the privacy policy …)
+  // simply loads from the network — it must never be saved as the app's offline copy.
+  const appPage = url.pathname.endsWith("/index.html") || url.pathname.endsWith("/");
+  if (e.request.mode === "navigate" && !appPage) return;
+  if (appPage) {
     const netP = fetch(e.request, { cache: "no-store" });
     e.waitUntil(netP.then((res) => {
       if (res && res.ok && !res.redirected) { const clone = res.clone(); return caches.open(CACHE).then((c) => c.put("./index.html", clone)); }
